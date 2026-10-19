@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 <div class="field"><label for="photo">1. Choose your photo</label><div class="upload"><input id="photo" type="file" accept="image/*"><p class="hint" style="margin:8px 0 0">Use a clear portrait. JPG or PNG works best.</p></div></div>
 <div class="field"><label for="name">2. Enter your name</label><input id="name" type="text" maxlength="32" placeholder="e.g. Sarah Namusoke" autocomplete="name"></div>
 <div class="actions"><button id="download" class="btn primary" disabled>Download my flyer (PNG)</button><button id="reset" class="btn secondary" type="button">Start again</button></div><div id="status" class="status" role="status"></div></div>
-<div class="preview"><h2>Flyer preview</h2><div class="canvasbox"><canvas id="flyer" width="1254" height="1254" aria-label="Preview of your personalised DVN flyer"></canvas></div></div></section><p class="foot">Digital Ventures Network · Build, Connect &amp; Earn</p></main>
+<div class="preview"><h2>Flyer preview</h2><div class="canvasbox"><canvas id="flyer" width="1254" height="1254" aria-label="Preview of your personalised DVN flyer"></canvas></div></div></section><p class="foot">Digital Ventures Network Â· Build, Connect &amp; Earn</p></main>
 <script>
 const canvas=document.getElementById('flyer'),ctx=canvas.getContext('2d'),photoInput=document.getElementById('photo'),nameInput=document.getElementById('name'),downloadBtn=document.getElementById('download'),status=document.getElementById('status');
 const base=new Image();let portrait=null,baseReady=false;const W=1254,H=1254;
@@ -28,3 +28,4 @@ nameInput.addEventListener('input',draw);
 downloadBtn.addEventListener('click',()=>{if(downloadBtn.disabled)return;canvas.toBlob(blob=>{if(!blob){status.textContent='Could not create the download. Try again.';return;}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='DVN-flyer-'+(nameInput.value.trim().replace(/[^a-z0-9-_]+/gi,'-').replace(/^-|-$/g,'')||'my-name')+'.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);status.textContent='Your flyer is ready. Check your Downloads or Files app.';},'image/png');});
 document.getElementById('reset').addEventListener('click',()=>{photoInput.value='';nameInput.value='';portrait=null;status.textContent='';draw();});
 </script></body></html>
+
