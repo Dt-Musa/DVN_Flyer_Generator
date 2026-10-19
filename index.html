@@ -18,8 +18,8 @@ const base=new Image();let portrait=null,baseReady=false;const W=1254,H=1254;
 base.onload=()=>{baseReady=true;draw();};base.onerror=()=>{status.textContent='Could not load the flyer template. Keep template.svg in the same folder as index.html.';};base.src='template.svg';
 function roundedRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
 function draw(){if(!baseReady)return;ctx.clearRect(0,0,W,H);ctx.drawImage(base,0,0,W,H);
-// Replace the placeholder area with the user's photo, preserving the original design's rounded corners.
-if(portrait){const x=731,y=365,w=406,h=250;ctx.save();roundedRect(x,y,w,h,18);ctx.clip();const scale=Math.max(w/portrait.width,h/portrait.height),sw=w/scale,sh=h/scale,sx=(portrait.width-sw)/2,sy=(portrait.height-sh)/2;ctx.drawImage(portrait,sx,sy,sw,sh,x,y,w,h);ctx.restore();ctx.save();roundedRect(x,y,w,h,18);ctx.strokeStyle='#8abaff';ctx.lineWidth=3;ctx.setLineDash([12,9]);ctx.stroke();ctx.restore();}
+    // Replace the placeholder area with the user's photo, preserving the original design's rounded corners.
+    if(portrait){const x=706,y=271,w=456,h=591;ctx.save();roundedRect(x,y,w,h,25);ctx.clip();const scale=Math.max(w/portrait.width,h/portrait.height),sw=w/scale,sh=h/scale,sx=(portrait.width-sw)/2,sy=(portrait.height-sh)/2;ctx.drawImage(portrait,sx,sy,sw,sh,x,y,w,h);ctx.restore();ctx.save();roundedRect(x,y,w,h,25);ctx.strokeStyle='#b8d2ff';ctx.lineWidth=3;ctx.stroke();ctx.restore();}
 // Redraw the editable name pill on top of the placeholder label.
 ctx.save();roundedRect(940,282,204,42,21);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#d7e6ff';ctx.lineWidth=2;ctx.stroke();let nm=nameInput.value.trim()||'YOUR NAME HERE';let size=15;ctx.font=`700 ${size}px Arial, sans-serif`;while(ctx.measureText(nm).width>178&&size>10){size--;ctx.font=`700 ${size}px Arial, sans-serif`;}ctx.fillStyle='#111c45';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(nm,1042,303);ctx.restore();
 downloadBtn.disabled=!(baseReady&&portrait&&nameInput.value.trim());}
